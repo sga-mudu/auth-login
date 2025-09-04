@@ -1,7 +1,7 @@
 import { Container } from 'react-bootstrap';
 import Signup from './components/Signup';
 import AuthProvider from './contexts/AuthContext';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
 import Login from './components/Login';
 import PrivateRoute from './components/PrivateRoute';
@@ -16,7 +16,8 @@ function App() {
         <Router basename="/auth-login">
           <AuthProvider>
             <Routes>
-              <Route path='/' element={
+              <Route path='/' element={<Navigate to="/auth-login" replace />} />
+              <Route path='/auth-login' element={
                 <PrivateRoute>
                   <Dashboard />
                 </PrivateRoute>
